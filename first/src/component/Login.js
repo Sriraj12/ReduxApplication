@@ -1,23 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import {useSelector,useDispatch} from 'react-redux';
 // import { signup } from '../service/action'; 
-// import Signup from './Signup';
 
 
-function Login (props) {
+
+function Login () {
     const navigate = useNavigate();
     // const dispatch = useDispatch();
-    // const sign = useSelector((state) => state.sign_in)
+    // const sign = useSelector((state) => state)
 
     const [user,setUser] = useState({
         username:"",
         password:"",
     });
+    // const check = () =>{
+    // }
+    useEffect(()=>{
+        localStorage.setItem("userDetails",JSON.stringify())
+        localStorage.getItem("userDetails",)
+      });
     return (
         <Grid>
             <Paper elevation={10} className="user">
@@ -36,9 +42,6 @@ function Login (props) {
                         value={user.username}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev,username: e.target.value}))}
-                        // helperText ={uerror}
-                        // error={uerror}
-                    
                     />
                 </div>
                 <div className="pass">
@@ -53,7 +56,6 @@ function Login (props) {
                         value={user.password}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev, password: e.target.value}))}
-                        // helperText ={perror}
                     />
                 </div>
                 <div className="button1">

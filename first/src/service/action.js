@@ -1,14 +1,7 @@
-import { SIGNIN_SUCCESS, SIGNIN_FAIL, VALUE } from "./actiontype";
-
-export const signup = () =>{
-    return{ type:SIGNIN_SUCCESS, payload:{signup}}
-
-}
-export const logout = () =>{
-    return{ type:SIGNIN_FAIL, payload:{logout}}
-}
-
+import { VALUE } from "./actiontype";
 export const pass = () =>{
-    return{type:VALUE, payload:{pass}}
+    return{type:VALUE, 
+           payload:{pass}
+          }
 }
-
+ 

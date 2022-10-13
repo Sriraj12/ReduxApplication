@@ -1,26 +1,13 @@
-import {  VALUE } from "./actiontype";
-const INITIAL_STATE = 0
-const update = (state=INITIAL_STATE, action ) =>{
+import { VALUE } from "./actiontype";
+const INITIAL_STATE = [];
+const update = (state=[...INITIAL_STATE], action ) =>{
+    console.log("data",update);
+    const payload = action.payload
     switch(action.type){
         case VALUE:
-            return{...state,  };
+            return{...state,payload};
         default:
             return state;
     }
 }
 export default update;
-
-
-
-// const INITIAL_STATE ={signIn:false}
-// const sign_in = (state=INITIAL_STATE,action)=>{
-//     switch(action.type){
-//         case SIGNIN_SUCCESS:
-//             return {...state,signIn:true};
-//         case SIGNIN_FAIL:
-//             return state;
-//         default:
-//             return state;
-//     }
-// }
-// export default sign_in;
