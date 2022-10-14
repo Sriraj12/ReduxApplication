@@ -88,8 +88,7 @@ function Signup() {
                         variant="contained"
                         fullWidth
                         onClick={handleSubmitClick}
-                    >
-                        Submit</Button>
+                    >Submit</Button>
                 </div>
             </Paper>
         </Grid>
