@@ -1,17 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-// import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { VALUE } from '../service/actiontype';
-
 
 function Signup() {
     const navigate = useNavigate();
-    // const update = useSelector((state) => state.update)
     const dispatch = useDispatch()
+    const data = useSelector((state) => state)
+    console.log("ssss",data);
     const [uerror, setUerror] = useState(null);
     const [perror, setPerror] = useState(null)
     const [user, setUser] = useState({
@@ -44,7 +43,6 @@ function Signup() {
         console.log("vava", user.username);
         console.log("va", user.password);
     };
-    // console.log("data",user);
     return (
         <Grid>
             <Paper elevation={10} className="user">
@@ -100,6 +98,5 @@ function Signup() {
 
 export default Signup;
 
-// () => dispatch(Action())
 
 

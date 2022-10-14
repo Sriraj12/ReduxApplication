@@ -1,11 +1,14 @@
 import { VALUE } from "./actiontype";
-const INITIAL_STATE = [];
-const update = (state=[...INITIAL_STATE], action ) =>{
-    console.log("data",update);
+const INITIAL_STATE = { 
+    username:"",
+    password:""
+};
+const update = (state=INITIAL_STATE, action ) =>{
     const payload = action.payload
+    console.log("action",action);
     switch(action.type){
         case VALUE:
-            return{...state,payload};
+            return{...state,...payload};
         default:
             return state;
     }

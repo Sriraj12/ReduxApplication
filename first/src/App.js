@@ -4,10 +4,13 @@ import Home from "./component/Home";
 import Login from "./component/Login";
 import Userdetails, { Information, Status } from "./component/Userdetails";
 import Signup from './component/Signup';
+import {Provider} from 'react-redux';
+import store from './service/store';
 
 
 function App() {
   return (
+    <Provider store={store}>
     <>
       <Router>
         <Routes>
@@ -20,6 +23,7 @@ function App() {
         </Routes>
       </Router>  
     </>
+    </Provider>
   );
 }
 

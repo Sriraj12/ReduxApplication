@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import {useSelector,useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { signup } from '../service/action'; 
 
 
@@ -12,17 +12,26 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 function Login () {
     const navigate = useNavigate();
     // const dispatch = useDispatch();
-    // const sign = useSelector((state) => state)
-
+    const checkuser = useSelector((state) => state.username)
+    const checkpass = useSelector((state) => state.password)
+    const [check,setCheck] = useState()
     const [user,setUser] = useState({
         username:"",
         password:"",
     });
-    // const check = () =>{
-    // }
+    console.log("popo",user.username);
+    console.log("po",user.password);
+    const handleSubmit =()=>{
+        if(user.username === checkuser && user.password === checkpass){
+           setCheck(()=>{navigate("/home")})
+        }
+        else{
+            setCheck('Please enter valid username and password')
+        }
+    }
     useEffect(()=>{
-        localStorage.setItem("userDetails",JSON.stringify())
-        localStorage.getItem("userDetails",)
+        localStorage.setItem("userDetails",JSON.stringify(user))
+        localStorage.getItem("userDetails",user)
       });
     return (
         <Grid>
@@ -42,6 +51,8 @@ function Login () {
                         value={user.username}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev,username: e.target.value}))}
+                        error={check}
+                        helperText={check}
                     />
                 </div>
                 <div className="pass">
@@ -56,13 +67,15 @@ function Login () {
                         value={user.password}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev, password: e.target.value}))}
+                        error={check}
+                        helperText={check}
                     />
                 </div>
                 <div className="button1">
                 <Button 
                 variant="contained" 
                 fullWidth 
-                onClick = {()=>{navigate("/home")}}
+                onClick = {handleSubmit}
                 >
                 Sign In</Button>
                 </div>
@@ -81,6 +94,8 @@ function Login () {
 
 export default Login;
 
+
+// ()=>{navigate("/home")}
 // () => dispatch(Action())
 // () => dispatch(signup())
 
