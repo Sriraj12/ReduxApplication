@@ -99,3 +99,7 @@ export default Signup;
 
 
 
+// dispatch({
+//     type: VALUE,
+//     payload: user
+// })

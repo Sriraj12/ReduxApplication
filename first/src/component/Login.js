@@ -21,12 +21,17 @@ function Login () {
     });
     console.log("popo",user.username);
     console.log("po",user.password);
+    console.log("data",check);
     const handleSubmit =()=>{
+        if(user.username === "" && user.password === ""){
+            setCheck(alert('Please enter username and password'))
+        }
+        else
         if(user.username === checkuser && user.password === checkpass){
            setCheck(()=>{navigate("/home")})
         }
         else{
-            setCheck('Please enter valid username and password')
+            setCheck(alert('Please enter valid username and password'))
         }
     }
     useEffect(()=>{
@@ -51,8 +56,6 @@ function Login () {
                         value={user.username}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev,username: e.target.value}))}
-                        error={check}
-                        helperText={check}
                     />
                 </div>
                 <div className="pass">
@@ -67,8 +70,6 @@ function Login () {
                         value={user.password}
                         autoComplete='off'
                         onChange={(e) => setUser(prev=>({...prev, password: e.target.value}))}
-                        error={check}
-                        helperText={check}
                     />
                 </div>
                 <div className="button1">
