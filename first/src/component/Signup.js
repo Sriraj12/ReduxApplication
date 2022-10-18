@@ -16,6 +16,7 @@ function Signup() {
     const [user, setUser] = useState({
         username: "",
         password: "",
+        nationlity:"",
     });
     const handleSubmitClick = () => {
         if (user.username === "") {
@@ -32,7 +33,7 @@ function Signup() {
                         setPerror('Minimum 6 characters');
                     }
                     else {
-                        console.log("data", user);
+                        console.log("sign-in", user);
                         setUser(user)
                         setUerror(() => navigate("/"))
                         dispatch({

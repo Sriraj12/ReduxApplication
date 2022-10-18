@@ -14,14 +14,17 @@ function Login () {
     // const dispatch = useDispatch();
     const checkuser = useSelector((state) => state.username)
     const checkpass = useSelector((state) => state.password)
+
     const [check,setCheck] = useState()
     const [user,setUser] = useState({
         username:"",
         password:"",
+        nationality:""
     });
     console.log("popo",user.username);
     console.log("po",user.password);
-    console.log("data",check);
+    console.log("value",user);
+    console.log("digit",check);
     const handleSubmit =()=>{
         if(user.username === "" && user.password === ""){
             setCheck(alert('Please enter username and password'))

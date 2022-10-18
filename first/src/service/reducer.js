@@ -1,7 +1,8 @@
 import { VALUE } from "./actiontype";
 const INITIAL_STATE = { 
     username:"",
-    password:""
+    password:"",
+    nationality:"Indian"
 };
 const update = (state=INITIAL_STATE, action ) =>{
     const payload = action.payload
