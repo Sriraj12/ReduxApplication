@@ -4,19 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import { useDispatch, useSelector } from 'react-redux';
-import { VALUE } from '../service/actiontype';
+import { getPass, getUpdate } from '../service/action';
+
 
 function Signup() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const data = useSelector((state) => state)
-    console.log("ssss",data);
-    const [uerror, setUerror] = useState(null);
-    const [perror, setPerror] = useState(null)
+    console.log("stateDate",data);
+    const [uerror, setUerror] = useState();
+    const [perror, setPerror] = useState()
     const [user, setUser] = useState({
         username: "",
         password: "",
-        nationlity:"",
     });
     const handleSubmitClick = () => {
         if (user.username === "") {
@@ -36,13 +36,10 @@ function Signup() {
                         console.log("sign-in", user);
                         setUser(user)
                         setUerror(() => navigate("/"))
-                        dispatch({
-                            type: VALUE,
-                            payload: user
-                        })
+                        dispatch(getPass(user))
                     }
-        console.log("vava", user.username);
-        console.log("va", user.password);
+        console.log("sign.user", user.username);
+        console.log("sign.pwd", user.password);
     };
     return (
         <Grid>

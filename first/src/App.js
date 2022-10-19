@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { useState } from 'react';
 import Home from "./component/Home";
 import Login from "./component/Login";
 import Userdetails, { Information, Status } from "./component/Userdetails";
@@ -9,6 +10,10 @@ import store from './service/store';
 
 
 function App() {
+  // const[token,setToken] = useState();
+  // if(!token){
+  //   return<Login setToken={setToken}/>
+  // }
   return (
     <Provider store={store}>
     <>

@@ -1,11 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useSelector } from 'react-redux';
-// import { signup } from '../service/action'; 
+
 
 
 
@@ -19,28 +18,24 @@ function Login () {
     const [user,setUser] = useState({
         username:"",
         password:"",
-        nationality:""
     });
-    console.log("popo",user.username);
-    console.log("po",user.password);
+    console.log("log.user",user.username);
+    console.log("log.pwd",user.password);
     console.log("value",user);
-    console.log("digit",check);
+    console.log("errorState",check);
     const handleSubmit =()=>{
         if(user.username === "" && user.password === ""){
             setCheck(alert('Please enter username and password'))
         }
         else
         if(user.username === checkuser && user.password === checkpass){
+           localStorage.setItem("userDetails","user")
            setCheck(()=>{navigate("/home")})
         }
         else{
             setCheck(alert('Please enter valid username and password'))
         }
     }
-    useEffect(()=>{
-        localStorage.setItem("userDetails",JSON.stringify(user))
-        localStorage.getItem("userDetails",user)
-      });
     return (
         <Grid>
             <Paper elevation={10} className="user">
