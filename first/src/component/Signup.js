@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPass, getUpdate } from '../service/action';
+import { getPass } from '../service/action';
 
 
 function Signup() {
@@ -35,7 +35,7 @@ function Signup() {
                     else {
                         console.log("sign-in", user);
                         setUser(user)
-                        setUerror(() => navigate("/"))
+                        navigate("/")
                         dispatch(getPass(user))
                     }
         console.log("sign.user", user.username);

@@ -22,7 +22,19 @@
 .bml{
   margin-left: 3%;
 }
+.bmr{
+  margin-right: 3%;
+}
 body{
   background-color:antiquewhite;
 }
 
+
+
+/* <Route exact path="/home" element={() =>{
+  var a = localStorage.getItem('token')
+  return(
+    (a === 'user' ? <Home /> :  <Navigate replace to={"/"} />)
+  )
+}
+} /> */

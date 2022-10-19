@@ -14,6 +14,7 @@ function Login () {
     const checkuser = useSelector((state) => state.username)
     const checkpass = useSelector((state) => state.password)
 
+    console.log("checkuser",checkuser,"checkpass",checkpass );
     const [check,setCheck] = useState()
     const [user,setUser] = useState({
         username:"",
@@ -29,8 +30,12 @@ function Login () {
         }
         else
         if(user.username === checkuser && user.password === checkpass){
-           localStorage.setItem("userDetails","user")
-           setCheck(()=>{navigate("/home")})
+            console.log("asdasd");
+            localStorage.setItem('Token','user')
+            setTimeout(()=>{
+                navigate("/home")
+            },5000)
+           console.log("to"); 
         }
         else{
             setCheck(alert('Please enter valid username and password'))

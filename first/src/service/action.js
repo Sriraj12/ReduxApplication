@@ -9,7 +9,7 @@ export const getPass = (user) =>(dispatch,getData)=>{
             type:VALUE,
             payload:user
         })
-    },30000)
+    },5000)
 }
 
 // export const getUpdate = (user) =>({

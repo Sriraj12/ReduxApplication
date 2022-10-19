@@ -11,7 +11,6 @@ function Home() {
     const handleSubmitClick = () =>{
        return details
     }
-    console.log("Details",details.username,details);
     return(
     <>
     <Paper>
@@ -27,6 +26,7 @@ function Home() {
       <div>Name ={details.username}</div>
       <div>Password ={details.password}</div>
       <div>Color ={details.color}</div>
+      <Button variant="outlined" color="warning" onClick={() => {navigate("/");}}>Logout</Button>
     </Paper>
     </>
     )

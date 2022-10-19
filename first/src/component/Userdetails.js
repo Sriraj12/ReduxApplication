@@ -8,6 +8,7 @@ function Userdetails(){
         <div>
         <h2>Welcome to User Detail Page</h2>
         <Button variant="contained" align="right" color="primary" onClick={() => {navigate("/home");}}>Home</Button>
+        <Button variant="outlined" color="warning" onClick={() => {navigate("/");}}>Logout</Button>
         </div>
     )
 }
@@ -19,6 +20,7 @@ function Information(){
         <div>
         <h2>Welcome to Information Page</h2>
         <Button variant="contained" align="right" color="primary" onClick={() => {navigate("/home");}}>Home</Button>
+        <Button variant="outlined" color="warning" onClick={() => {navigate("/");}}>Logout</Button>
         </div>
     )
 }
@@ -28,6 +30,7 @@ function Status(){
         <div>
         <h2>Welcome to Status Page</h2>
         <Button variant="contained" align="right" color="primary" onClick={() => {navigate("/home");}}>Home</Button>
+        <Button variant="outlined" color="warning" onClick={() => {navigate("/");}}>Logout</Button>
         </div>
     )
 }
