@@ -21,23 +21,23 @@ function Signup() {
     const handleSubmitClick = () => {
         if (user.username === "") {
             setUerror('Required Field')
+        }else
+        if (user.username.length < 6) {
+            setUerror('Minimum 6 characters')
+        }
+        else
+        if (user.password === "") {
+            setPerror('Required Field')
         } else
-            if (user.username.length < 6) {
-                setUerror('Minimum 6 characters')
-            }
-            else
-                if (user.password === "") {
-                    setPerror('Required Field')
-                } else
-                    if (user.password.length < 6) {
-                        setPerror('Minimum 6 characters');
-                    }
-                    else {
-                        console.log("sign-in", user);
-                        setUser(user)
-                        navigate("/")
-                        dispatch(getPass(user))
-                    }
+        if (user.password.length < 6) {
+            setPerror('Minimum 6 characters');
+        }
+        else {
+            console.log("sign-in", user);
+            setUser(user)
+            navigate("/")
+            dispatch(getPass(user))
+        }
         console.log("sign.user", user.username);
         console.log("sign.pwd", user.password);
     };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -9,6 +9,12 @@ import { useSelector } from 'react-redux';
 
 
 function Login () {
+    // const [data,setData] = useState(null)
+    // useEffect(()=>{
+    //   fetch("http://localhost:8000/store")
+    //   .then((data)=> data.json())
+    //   .then(data => setData(data))
+    // },[])
     const navigate = useNavigate();
     // const dispatch = useDispatch();
     const checkuser = useSelector((state) => state.username)
@@ -25,17 +31,19 @@ function Login () {
     console.log("value",user);
     console.log("errorState",check);
     const handleSubmit =()=>{
+        console.log("bksbks");
         if(user.username === "" && user.password === ""){
             setCheck(alert('Please enter username and password'))
         }
         else
         if(user.username === checkuser && user.password === checkpass){
-            console.log("asdasd");
-            localStorage.setItem('Token','user')
+            console.log("bb2");
+            localStorage.setItem("Token","ticket")
+            console.log("bb3");
             setTimeout(()=>{
                 navigate("/home")
             },5000)
-           console.log("to"); 
+            
         }
         else{
             setCheck(alert('Please enter valid username and password'))

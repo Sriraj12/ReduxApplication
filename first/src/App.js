@@ -15,7 +15,7 @@ function App() {
   //   return<Login setToken={setToken}/>
   // }
   // var a = localStorage.getItem('token')
-  console.log("aaaa",localStorage.getItem('token'));
+  console.log("aaaa",localStorage.getItem("Token"));
   return (
     <Provider store={store}>
     <>
@@ -23,12 +23,17 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Login/>}/>
           <Route exact path="/home" element={
-             localStorage.getItem('token')=== 'user' ? (<Home />) :  (<Navigate replace to={"/"} />)
+            localStorage.getItem("Token")=== "ticket" ? (<Home />) :  (<Navigate replace to={"/"} />)
           } /> 
-          {/* <Route exact path="/home" element={<Home />} /> */}
-          <Route exact path="/home/userdetails" element={<Userdetails />}/>
-          <Route exact path="/home/information" element={<Information/>}/>
-          <Route exact path="/home/status" element={<Status/>}/>
+          <Route exact path="/home/userdetails" element={
+            localStorage.getItem("Token")=== "ticket" ? (<Userdetails />) :  (<Navigate replace to={"/"} />)
+            }/>
+          <Route exact path="/home/information" element={
+            localStorage.getItem("Token")=== "ticket" ? (<Information/>) :  (<Navigate replace to={"/"} />)
+            }/>
+          <Route exact path="/home/status" element={
+            localStorage.getItem("Token")=== "ticket" ? (<Status/>) :  (<Navigate replace to={"/"} />)
+            }/>
           <Route exact path="/signup" element={<Signup/>}/>
         </Routes>
       </Router>  
@@ -40,10 +45,10 @@ function App() {
 export default App;
 
 
- <Route exact path="/home" element={() =>{
-  var a = localStorage.getItem('token')
-  return(
-    (a === 'user' ? <Home /> :  <Navigate replace to={"/"} />)
-  )
-}
-} />  
+//  <Route exact path="/home" element={() =>{
+//   var a = localStorage.getItem('token')
+//   return(
+//     (a === 'user' ? <Home /> :  <Navigate replace to={"/"} />)
+//   )
+// }
+// } />  
