@@ -1,24 +1,17 @@
 import React from 'react';
-import { useState} from 'react';
+import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
-import { Avatar, Grid, Button, TextField, Paper} from '@mui/material';
+import { Avatar, Grid, Button, TextField, Paper, Typography, Link} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useSelector } from 'react-redux';
 
 
-
-
 function Login () {
-    // const [data,setData] = useState(null)
-    // useEffect(()=>{
-    //   fetch("http://localhost:8000/store")
-    //   .then((data)=> data.json())
-    //   .then(data => setData(data))
-    // },[])
     const navigate = useNavigate();
     // const dispatch = useDispatch();
     const checkuser = useSelector((state) => state.username)
     const checkpass = useSelector((state) => state.password)
+    localStorage.setItem("Token","ticket")
 
     console.log("checkuser",checkuser,"checkpass",checkpass );
     const [check,setCheck] = useState()
@@ -38,7 +31,7 @@ function Login () {
         else
         if(user.username === checkuser && user.password === checkpass){
             console.log("bb2");
-            localStorage.setItem("Token","ticket")
+            // localStorage.setItem("Token","ticket")
             console.log("bb3");
             setTimeout(()=>{
                 navigate("/home")
@@ -50,7 +43,7 @@ function Login () {
         }
     }
     return (
-        <Grid>
+        <Grid className='bgcolor'>
             <Paper elevation={10} className="user">
                 <Grid align="center">
                     <Avatar><LockOutlinedIcon /></Avatar>
@@ -91,6 +84,13 @@ function Login () {
                 >
                 Sign In</Button>
                 </div>
+                {/* <div>
+                    <Typography>
+                        Don't have an account <Link
+                        onClick ={() => {navigate("/signup");}}
+                        ></Link>
+                    </Typography>
+                </div> */}
                 <div>
                     <Button
                     variant ="contained"
@@ -105,9 +105,3 @@ function Login () {
 }
 
 export default Login;
-
-
-// ()=>{navigate("/home")}
-// () => dispatch(Action())
-// () => dispatch(signup())
-

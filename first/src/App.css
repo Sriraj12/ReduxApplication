@@ -25,8 +25,16 @@
 .bmr{
   margin-right: 3%;
 }
-body{
-  background-color:antiquewhite;
+table,th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td,th{
+  padding:auto;
+}
+table{
+  width:20%;
+  height: 10%;
 }
 
 
