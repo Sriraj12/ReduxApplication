@@ -36,7 +36,7 @@ function Information() {
     const navigate = useNavigate();
     return (
         <>
-          <AppBar position="static">
+            <AppBar position="static">
                 <Toolbar>
                     <IconButton>
                         <AccountCircleRoundedIcon />
@@ -62,7 +62,7 @@ function Status() {
     const navigate = useNavigate();
     return (
         <>
-         <AppBar position="static">
+            <AppBar position="static">
                 <Toolbar>
                     <IconButton>
                         <AccountCircleRoundedIcon />

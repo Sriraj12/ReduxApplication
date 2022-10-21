@@ -17,9 +17,9 @@ function Home() {
 
   const navigate = useNavigate();
   // const details = useSelector((state) => state)
-  const handleSubmitClick = () => {
-    return
-  }
+  // const handleSubmitClick = () => {
+  //   return
+  // }
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
   const [place, setPlace] = useState("")
