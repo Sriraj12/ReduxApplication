@@ -14,6 +14,13 @@ function Login() {
             .then((data) => data.json())
             .then(data => setData(data))
     }, [])
+    const [token, setToken] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:8000/data")
+        .then((token) => token.json())
+        .then(token => setToken(token))
+    }, [])
+    console.log("sdfsdd",token);
     const checkuser = useSelector((state) => state.username)
     const checkpass = useSelector((state) => state.password)
     localStorage.setItem("Token", "ticket")

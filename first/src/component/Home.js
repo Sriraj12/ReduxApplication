@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Button, AppBar, Toolbar, IconButton, Typography, TextField } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +8,7 @@ import { Stack } from '@mui/system';
 
 
 function Home() {
-  const [data, setData] = useState([])
-  useEffect(() => {
-    fetch("http://localhost:8000/store")
-      .then((data) => data.json())
-      .then(data => setData(data))
-  }, [])
+  
 
   const navigate = useNavigate();
   // const details = useSelector((state) => state)
@@ -81,31 +76,6 @@ const AddUser = async() =>{
           />
           <Button variant='contained'color="primary" onClick={AddUser} >Add</Button>
           </Stack>
-          {/* <Button variant="contained" color="primary" onClick={handleSubmitClick}>Show User Details</Button> */}
-          <br /><br />
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Place</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(data?.map((value, i) => {
-                  return (
-                    <tr key={i}>
-                      <td>{value.name}</td>
-                      <td>{value.age}</td>
-                      <td>{value.place}</td>
-                    </tr>
-                  )
-                }
-                )) ?? "loading..."}
-              </tbody>
-            </table>
-          </div>
       </Grid>
     </>
   )
