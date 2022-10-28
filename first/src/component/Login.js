@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
+// import { useDispatch ,useSelector } from 'react-redux';
 
 
 function Login() {
@@ -14,48 +15,65 @@ function Login() {
             .then((data) => data.json())
             .then(data => setData(data))
     }, [])
-    const [token, setToken] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:8000/data")
-        .then((token) => token.json())
-        .then(token => setToken(token))
-    }, [])
-    console.log("sdfsdd",token);
-    const checkuser = useSelector((state) => state.username)
-    const checkpass = useSelector((state) => state.password)
-    localStorage.setItem("Token", "ticket")
 
-    console.log("checkuser", checkuser, "checkpass", checkpass);
+    
+
+    // const checkuser = useSelector((state) => state.username)
+    // const checkpass = useSelector((state) => state.password)
+    // localStorage.setItem("Token", "ticket")
+
+    // console.log("checkuser", checkuser, "checkpass", checkpass);
     const [check, setCheck] = useState()
-    const [user, setUser] = useState({
-        username: "",
-        password: "",
-    });
-    console.log("log.user", user.username);
-    console.log("log.pwd", user.password);
-    console.log("value", user);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    // console.log("log.user",username);
+    // console.log("log.pwd",password);
     console.log("errorState", check);
     const array1 = data.filter((value)=>
-        (value.username === user.username && value.password === user.password)
+        (value.username === username && value.password === password)
     );
-    const handleSubmit = () => {
-        console.log("bksbks");
-        if (user.username === "" && user.password === "") {
+    const handleSubmit =() => {
+
+        const tokens = axios.post('http://localhost:8000/token',{username,password})
+        .then(response =>{
+            const token = response.data.token;
+            localStorage.setItem("token",token)
+
+            setAuthToken(token);
+            console.log(tokens);
+        })
+        .catch(err => console.log(err));
+
+        if (username === "" && password === "") {
             setCheck(alert('Please enter username and password'))
         }
         else
             if (array1.length === 1) {
                 console.log("bb2");
-                console.log("bb3");
                 setTimeout(() => {
                     navigate("/home")
                 }, 1000)
+                console.log("bb3");
 
             }
             else {
                 setCheck(alert('Please enter valid username and password'))
             }
     }
+    const setAuthToken = (token) =>{
+        if(token){
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+        else{
+            delete axios.defaults.headers.common["Authorization"];
+        }
+    }
+
+    const token = localStorage.getItem("token");
+    if(token){
+        setAuthToken(token);
+    }
+
     return (
         <Grid className='bgcolor'>
             <Paper elevation={10} className="user">
@@ -71,9 +89,9 @@ function Login() {
                         className="username"
                         placeholder='Enter user name'
                         fullWidth
-                        value={user.username}
+                        value={username}
                         autoComplete='off'
-                        onChange={(e) => setUser(prev => ({ ...prev, username: e.target.value }))}
+                        onChange={(e) => setUsername(e.target.value )}
                     />
                 </div>
                 <div className="pass">
@@ -85,9 +103,9 @@ function Login() {
                         className="password"
                         placeholder='Enter password'
                         fullWidth
-                        value={user.password}
+                        value={password}
                         autoComplete='off'
-                        onChange={(e) => setUser(prev => ({ ...prev, password: e.target.value }))}
+                        onChange={(e) => setPassword(e.target.value )}
                     />
                 </div>
                 <div className="button1">
@@ -95,16 +113,8 @@ function Login() {
                         variant="contained"
                         fullWidth
                         onClick={handleSubmit}
-                    >
-                        Sign In</Button>
+                    >Sign In</Button>
                 </div>
-                {/* <div>
-                    <Typography>
-                        Don't have an account <Link
-                        onClick ={() => {navigate("/signup");}}
-                        ></Link>
-                    </Typography>
-                </div> */}
                 <div>
                     <Button
                         variant="contained"

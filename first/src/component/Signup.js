@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPass } from '../service/action';
 
 
 function Signup() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const data = useSelector((state) => state)
-    console.log("stateDate",data);
+    // const data = useSelector((state) => state)
+    // console.log("stateDate",data);
     const [uerror, setUerror] = useState();
     const [perror, setPerror] = useState()
     const [user, setUser] = useState({
@@ -33,13 +33,10 @@ function Signup() {
             setPerror('Minimum 6 characters');
         }
         else {
-            console.log("sign-in", user);
             setUser(user)
             navigate("/")
             dispatch(getPass(user))
         }
-        console.log("sign.user", user.username);
-        console.log("sign.pwd", user.password);
     };
     return (
         <Grid>
@@ -92,14 +89,4 @@ function Signup() {
         </Grid>
     );
 }
-
 export default Signup;
-
-
-
-// dispatch({
-//     type: VALUE,
-//     payload: user
-// })
-
-

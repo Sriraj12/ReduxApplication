@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, Button, AppBar, Toolbar, IconButton, Typography, TextField } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import { Stack } from '@mui/system';
+import { useState } from 'react';
 
 
 
 function Home() {
   
-
   const navigate = useNavigate();
   // const details = useSelector((state) => state)
   // const handleSubmitClick = () => {
@@ -52,7 +52,7 @@ const AddUser = async() =>{
               >Status</Button>
               <Button color="inherit" onClick={() => {
                 navigate("/")
-                localStorage.removeItem("Token")
+                localStorage.removeItem("token")
               }}>Logout</Button>
             </Stack>
           </Toolbar>
