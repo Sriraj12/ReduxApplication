@@ -29,7 +29,7 @@ function Userdetails() {
                             >Home</Button>
                             <Button color="inherit" onClick={() => {
                                 navigate("/")
-                                localStorage.removeItem("Token")
+                                localStorage.removeItem("token")
                             }}>Logout</Button>
                         </Stack>
                     </Toolbar>
@@ -81,7 +81,7 @@ function Information() {
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
                             navigate("/")
-                            localStorage.removeItem("Token")
+                            localStorage.removeItem("token")
                         }}>Logout</Button>
                     </Stack>
                 </Toolbar>
@@ -107,7 +107,7 @@ function Status() {
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
                             navigate("/")
-                            localStorage.removeItem("Token")
+                            localStorage.removeItem("token")
                         }}>Logout</Button>
                     </Stack>
                 </Toolbar>

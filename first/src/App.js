@@ -9,20 +9,16 @@ import store from './service/store';
 
 
 function App() {
-  // const[token,setToken] = useState();
-  // if(!token){
-  //   return<Login setToken={setToken}/>
-  // }
-  // var a = localStorage.getItem('token')
-  // console.log("aaaa",localStorage.getItem("Token"));
+  // const decode = localStorage.getItem("token");
+
   return (
     <Provider store={store}>
     <>
       <Router>
         <Routes>
-        <Route exact path="/" element={<Login/>}/>
-          <Route exact path="/home" element={<Home />}/> 
-          <Route exact path="/home/userdetails" element={<Userdetails />}/>
+          <Route exact path="/" element={(<Login/>)}/>
+          <Route exact path="/home" element={(<Home />)}/> 
+          <Route exact path="/home/userdetails" element={(<Userdetails />)}/>
           <Route exact path="/home/information" element={<Information/>}/>
           <Route exact path="/home/status" element={<Status/>}/>
           <Route exact path="/signup" element={<Signup/>}/>
@@ -30,16 +26,16 @@ function App() {
 
           {/* <Route exact path="/" element={<Login/>}/>
           <Route exact path="/home" element={
-            localStorage.getItem("token") === "ticket" ? (<Home />) :  (<Navigate replace to={"/"} />)
+            localStorage.getItem("token") ? (<Home />) :  (<Navigate replace to={"/"} />)
             }/> 
           <Route exact path="/home/userdetails" element={
-            localStorage.getItem("token") === "ticket" ? (<Userdetails />) :  (<Navigate replace to={"/"} />)
+            localStorage.getItem("token") ? (<Userdetails />) :  (<Navigate replace to={"/"} />)
             }/>
           <Route exact path="/home/information" element={
-            localStorage.getItem("token") === "ticket" ? (<Information/>) :  (<Navigate replace to={"/"} />)
+            localStorage.getItem("token") ? (<Information/>) :  (<Navigate replace to={"/"} />)
             }/>
           <Route exact path="/home/status" element={
-            localStorage.getItem("token") === "ticket" ? (<Status/>) :  (<Navigate replace to={"/"} />)
+            localStorage.getItem("token") ? (<Status/>) :  (<Navigate replace to={"/"} />)
             }/>
           <Route exact path="/signup" element={<Signup/>}/> */}
         </Routes>

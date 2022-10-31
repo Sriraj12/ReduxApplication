@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 const update = (state=INITIAL_STATE, action ) =>{
     const payload = action.payload
-    console.log("action",action);
+    // console.log("action",action);
     switch(action.type){
         case VALUE:
             return{...state,...payload};

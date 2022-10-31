@@ -8,6 +8,12 @@ import axios from 'axios';
 
 
 function Login() {
+//     const styles = {
+//     paperContainer: {
+//         height: 1356,
+//         backgroundImage: `url(${"static/src/img/main.jpg"})`
+//     }
+// };
     const navigate = useNavigate();
     const [data, setData] = useState([])
     useEffect(() => {
