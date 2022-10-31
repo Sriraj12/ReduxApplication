@@ -5,16 +5,16 @@ import { useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import { Stack } from '@mui/system';
 import { useState } from 'react';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 
 
 function Home() {
 
-  const decode = localStorage.getItem("token");
-  const decoded = jwt_decode(decode);
-  console.log("decode",decoded); 
-  const role = decoded.role;
-  console.log("role",role);
+  // const decode = localStorage.getItem("token");
+  // const decoded = jwt_decode(decode);
+  // console.log("decode",decoded); 
+  // const role = decoded.role;
+  // console.log("role",role);
  
   // const details = useSelector((state) => state)
   // const handleSubmitClick = () => {
@@ -50,16 +50,18 @@ const AddUser = async() =>{
               LOGIN APP
             </Typography>
             <Stack direction="row" spacing={2}>
-              <Button color="inherit" onClick={() => {
-                (role === 'Super Admin' || role === 'Admin' || role === 'CEO')
-                ? navigate("/home/userdetails"): navigate("/home")(alert("Cannot Access that Page"))} }
+              <Button color="inherit" onClick={()=>{ navigate("/userdetails")}
+                // () => {
+                // (role === 'Super Admin' || role === 'Admin' || role === 'CEO')
+                // ? navigate("/userdetails"): navigate("/")(alert("Cannot Access that Page"))} 
+              }
               >User Details</Button>
-              <Button color="inherit" onClick={() => { navigate("/home/information"); }}
+              <Button color="inherit" onClick={() => { navigate("/information"); }}
               >Information</Button>
-              <Button color="inherit" onClick={() => { navigate("/home/status"); }}
+              <Button color="inherit" onClick={() => { navigate("/status"); }}
               >Status</Button>
               <Button color="inherit" onClick={() => {
-                navigate("/")
+                navigate("/login")
                 localStorage.removeItem("token")
               }}>Logout</Button>
             </Stack>

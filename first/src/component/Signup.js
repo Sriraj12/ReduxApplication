@@ -34,7 +34,7 @@ function Signup() {
         }
         else {
             setUser(user)
-            navigate("/")
+            navigate("/login")
             dispatch(getPass(user))
         }
     };

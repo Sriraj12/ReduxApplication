@@ -57,7 +57,7 @@ function Login() {
             if (array1.length === 1) {
                 console.log("bb2");
                 setTimeout(() => {
-                    navigate("/home")
+                    navigate("/")
                 }, 1000)
                 console.log("bb3");
 

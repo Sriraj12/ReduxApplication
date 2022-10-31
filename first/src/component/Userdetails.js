@@ -25,10 +25,10 @@ function Userdetails() {
                             LOGIN APP
                         </Typography>
                         <Stack direction="row" spacing={2}>
-                            <Button color="inherit" onClick={() => { navigate("/home"); }}
+                            <Button color="inherit" onClick={() => { navigate("/"); }}
                             >Home</Button>
                             <Button color="inherit" onClick={() => {
-                                navigate("/")
+                                navigate("/login")
                                 localStorage.removeItem("token")
                             }}>Logout</Button>
                         </Stack>
@@ -77,10 +77,10 @@ function Information() {
                         LOGIN APP
                     </Typography>
                     <Stack direction="row" spacing={2}>
-                        <Button color="inherit" onClick={() => { navigate("/home"); }}
+                        <Button color="inherit" onClick={() => { navigate("/"); }}
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
-                            navigate("/")
+                            navigate("/login")
                             localStorage.removeItem("token")
                         }}>Logout</Button>
                     </Stack>
@@ -103,10 +103,10 @@ function Status() {
                         LOGIN APP
                     </Typography>
                     <Stack direction="row" spacing={2}>
-                        <Button color="inherit" onClick={() => { navigate("/home"); }}
+                        <Button color="inherit" onClick={() => { navigate("/"); }}
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
-                            navigate("/")
+                            navigate("/login")
                             localStorage.removeItem("token")
                         }}>Logout</Button>
                     </Stack>

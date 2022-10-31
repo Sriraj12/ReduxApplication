@@ -6,22 +6,29 @@ import Userdetails, { Information, Status } from "./component/Userdetails";
 import Signup from './component/Signup';
 import {Provider} from 'react-redux';
 import store from './service/store';
+import {useEffect, useState} from 'react';
 
 
-function App() {
-  // const decode = localStorage.getItem("token");
-
+function App() { 
+  const[token,setToken] = useState(localStorage.getItem("token"))
+  useEffect(()=>{
+    setToken(localStorage.getItem("token"))
+  },[])
+  
   return (
     <Provider store={store}>
     <>
       <Router>
         <Routes>
-          <Route exact path="/" element={(<Login/>)}/>
-          <Route exact path="/home" element={(<Home />)}/> 
-          <Route exact path="/home/userdetails" element={(<Userdetails />)}/>
-          <Route exact path="/home/information" element={<Information/>}/>
-          <Route exact path="/home/status" element={<Status/>}/>
-          <Route exact path="/signup" element={<Signup/>}/>
+          {
+           <Route element={ token ? (<Home/>) : (<Login/>)}/>
+          }
+          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/login/signup" element={<Signup/>}/>
+          <Route exact path="/" element={(<Home/>)}/>
+          <Route exact path="/userdetails" element={(<Userdetails />)}/>
+          <Route exact path="/information" element={<Information/>}/>
+          <Route exact path="/status" element={<Status/>}/>
 
 
           {/* <Route exact path="/" element={<Login/>}/>
