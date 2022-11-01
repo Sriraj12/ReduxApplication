@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 
-function Userdetails() {
+function Userdetails({setToken}) {
     const [data, setData] = useState([])
     useEffect(() => {
         fetch("http://localhost:8000/store")
@@ -28,8 +28,8 @@ function Userdetails() {
                             <Button color="inherit" onClick={() => { navigate("/"); }}
                             >Home</Button>
                             <Button color="inherit" onClick={() => {
-                                navigate("/login")
                                 localStorage.removeItem("token")
+                                setToken(false)
                             }}>Logout</Button>
                         </Stack>
                     </Toolbar>
@@ -64,7 +64,7 @@ function Userdetails() {
 }
 export default Userdetails;
 
-function Information() {
+function Information({setToken}) {
     const navigate = useNavigate();
     return (
         <>
@@ -80,8 +80,8 @@ function Information() {
                         <Button color="inherit" onClick={() => { navigate("/"); }}
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
-                            navigate("/login")
                             localStorage.removeItem("token")
+                            setToken(false)
                         }}>Logout</Button>
                     </Stack>
                 </Toolbar>
@@ -90,7 +90,7 @@ function Information() {
         </>
     )
 }
-function Status() {
+function Status({setToken}) {
     const navigate = useNavigate();
     return (
         <>
@@ -106,8 +106,8 @@ function Status() {
                         <Button color="inherit" onClick={() => { navigate("/"); }}
                         >Home</Button>
                         <Button color="inherit" onClick={() => {
-                            navigate("/login")
                             localStorage.removeItem("token")
+                            setToken(false)
                         }}>Logout</Button>
                     </Stack>
                 </Toolbar>

@@ -8,7 +8,7 @@ import { useState } from 'react';
 // import jwt_decode from 'jwt-decode';
 
 
-function Home() {
+function Home({setToken}) {
 
   // const decode = localStorage.getItem("token");
   // const decoded = jwt_decode(decode);
@@ -61,8 +61,8 @@ const AddUser = async() =>{
               <Button color="inherit" onClick={() => { navigate("/status"); }}
               >Status</Button>
               <Button color="inherit" onClick={() => {
-                navigate("/login")
-                localStorage.removeItem("token")
+                localStorage.removeItem("token");
+                setToken(false);
               }}>Logout</Button>
             </Stack>
           </Toolbar>

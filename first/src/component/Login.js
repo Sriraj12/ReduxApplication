@@ -4,16 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
+// import jwt_decode from 'jwt-decode';
 // import { useDispatch ,useSelector } from 'react-redux';
 
 
-function Login() {
-//     const styles = {
-//     paperContainer: {
-//         height: 1356,
-//         backgroundImage: `url(${"static/src/img/main.jpg"})`
-//     }
-// };
+function Login({authToken,setToken}) {
+  console.log("state",authToken);
+
     const navigate = useNavigate();
     const [data, setData] = useState([])
     useEffect(() => {
@@ -21,34 +18,22 @@ function Login() {
             .then((data) => data.json())
             .then(data => setData(data))
     }, [])
-
-    
-
-    // const checkuser = useSelector((state) => state.username)
-    // const checkpass = useSelector((state) => state.password)
-    // localStorage.setItem("Token", "ticket")
-
-    // console.log("checkuser", checkuser, "checkpass", checkpass);
     const [check, setCheck] = useState()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // console.log("log.user",username);
-    // console.log("log.pwd",password);
     console.log("errorState", check);
+
+    // const loginUser = axios.post('http://localhost:8000/userdetails',{username,password})
+    //  .then(response =>{
+    //     const loggedInUser = response.data.loggedInUser;
+    //     setData(loggedInUser);
+    //  }) 
+    //  console.log("loguser",data);
+ 
     const array1 = data.filter((value)=>
         (value.username === username && value.password === password)
     );
-    const handleSubmit =() => {
-
-        const tokens = axios.post('http://localhost:8000/token',{username,password})
-        .then(response =>{
-            const token = response.data.token;
-            localStorage.setItem("token",token)
-
-            setAuthToken(token);
-            console.log(tokens);
-        })
-        .catch(err => console.log(err));
+    const handleSubmit = () => {
 
         if (username === "" && password === "") {
             setCheck(alert('Please enter username and password'))
@@ -56,28 +41,20 @@ function Login() {
         else
             if (array1.length === 1) {
                 console.log("bb2");
-                setTimeout(() => {
-                    navigate("/")
-                }, 1000)
-                console.log("bb3");
-
+                const tokens = axios.post('http://localhost:8000/token',{username,password})
+                .then(response =>{
+                   const token = response.data.token;
+                   localStorage.setItem("token",token)
+                   console.log("token",tokens);
+               })
+               .then(()=>{
+                   setToken(true);
+               })
+               .catch(err => console.log(err));
             }
             else {
                 setCheck(alert('Please enter valid username and password'))
             }
-    }
-    const setAuthToken = (token) =>{
-        if(token){
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        }
-        else{
-            delete axios.defaults.headers.common["Authorization"];
-        }
-    }
-
-    const token = localStorage.getItem("token");
-    if(token){
-        setAuthToken(token);
     }
 
     return (
@@ -126,7 +103,7 @@ function Login() {
                         variant="contained"
                         fullWidth
                         color="inherit"
-                        onClick={() => { navigate("/signup"); }}
+                        onClick={() => { navigate("/login/signup"); }}
                     >Sign Up</Button>
                 </div>
             </Paper>
