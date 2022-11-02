@@ -14,19 +14,14 @@ import jwt_decode from 'jwt-decode';
 function App(props) {
   const token = localStorage.getItem("token")
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
-  
-  const decoded = useMemo(()=>{
-    if(token && isLoggedIn){
+
+  const decoded = useMemo(() => {
+    if (token && isLoggedIn) {
       return jwt_decode(token);
-    } 
-  }
-  ,[isLoggedIn,token])
+    }
+  }, [isLoggedIn, token])
   const role = decoded?.role;
-  console.log("decode",decoded); 
-  console.log("role",role);
- 
-  
-  
+
   return (
     <Provider store={store}>
       <>
@@ -37,30 +32,30 @@ function App(props) {
                 <Route exact path="/login" element={
                   <Login authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
                 <Route exact path="/login/signup" element={<Signup />} />
-                <Route path="/" element={<Navigate replace to="/login" />}/>
-                <Route path="/userdetails" element={<Navigate replace to="/login"/>} />
-                <Route path="/information" element={<Navigate replace to="/login"/>} />
-                <Route path="/status" element={<Navigate replace to="/login"/>} />
+                <Route path="/" element={<Navigate replace to="/login" />} />
+                <Route path="/userdetails" element={<Navigate replace to="/login" />} />
+                <Route path="/information" element={<Navigate replace to="/login" />} />
+                <Route path="/status" element={<Navigate replace to="/login" />} />
               </> :
               <>
-                 {
-                  role === 'Super Admin' || role === 'Admin'?
-                  <>
-                  <Route exact path="/userdetails" element={
-                  <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn}/>}/>
-                  </>:
-                  <>
-                  <Route path="/userdetails" element={<Navigate replace to="/" />}/>
-                  </>
+                {
+                  role === 'Super Admin' || role === 'Admin' ?
+                    <>
+                      <Route exact path="/userdetails" element={
+                        <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                    </> :
+                    <>
+                      <Route path="/userdetails" element={<Navigate replace to="/" />} />
+                    </>
                 }
-                <Route exact path="/" element={<Home authToken={isLoggedIn} setToken={setIsLoggedIn}/>}/>
+                <Route exact path="/" element={<Home authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
                 <Route exact path="/userdetails" element={
-                  <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn}/>}/>
+                  <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
                 <Route exact path="/information" element={
-                  <Information authToken={isLoggedIn} setToken={setIsLoggedIn}/>}/>
+                  <Information authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
                 <Route exact path="/status" element={
-                  <Status authToken={isLoggedIn} setToken={setIsLoggedIn}/>}/>
-                <Route path="/login" element={<Navigate replace to="/" />}/>
+                  <Status authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                <Route path="/login" element={<Navigate replace to="/" />} />
               </>
             }
           </Routes>

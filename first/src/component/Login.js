@@ -1,60 +1,47 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
-// import jwt_decode from 'jwt-decode';
-// import { useDispatch ,useSelector } from 'react-redux';
 
-
-function Login({authToken,setToken}) {
-  console.log("state",authToken);
-
+function Login({ setToken }) {
     const navigate = useNavigate();
-    const [data, setData] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:8000/userdetails")
-            .then((data) => data.json())
-            .then(data => setData(data))
-    }, [])
-    const [check, setCheck] = useState()
+    const Max_length = 1;
+    const [userError, setUserError] = useState();
+    const [passError, setPassError] = useState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    console.log("errorState", check);
+    console.log("errorState", userError);
 
-    // const loginUser = axios.post('http://localhost:8000/userdetails',{username,password})
-    //  .then(response =>{
-    //     const loggedInUser = response.data.loggedInUser;
-    //     setData(loggedInUser);
-    //  }) 
-    //  console.log("loguser",data);
- 
-    const array1 = data.filter((value)=>
-        (value.username === username && value.password === password)
-    );
-    const handleSubmit = () => {
+    const [data, setData] = useState()
 
-        if (username === "" && password === "") {
-            setCheck(alert('Please enter username and password'))
+    // const array1 = data.filter((value)=>
+    //     (value.username === username && value.password === password)
+    // );
+
+    const handleSubmit = async () => {
+
+        if (username < Max_length) {
+            setUserError('Please enter username')
+        } else if (password < Max_length) {
+            setPassError('Please enter the password')
+        } else {
+            console.log("bb2");
+            try {
+                const response = await axios.post('http://localhost:8000/login', { username, password })
+                const loggedInUser = response.data.loggedInUser;
+                const token = response.data.token;
+                setData(loggedInUser);
+                localStorage.setItem("token", token)
+                setToken(true);
+            }
+            catch (err) {
+                setUserError('Please enter valid username and password')
+            }
+            console.log("data", data);
         }
-        else
-            if (array1.length === 1) {
-                console.log("bb2");
-                const tokens = axios.post('http://localhost:8000/token',{username,password})
-                .then(response =>{
-                   const token = response.data.token;
-                   localStorage.setItem("token",token)
-                   console.log("token",tokens);
-               })
-               .then(()=>{
-                   setToken(true);
-               })
-               .catch(err => console.log(err));
-            }
-            else {
-                setCheck(alert('Please enter valid username and password'))
-            }
+
     }
 
     return (
@@ -71,10 +58,11 @@ function Login({authToken,setToken}) {
                         label="Username"
                         className="username"
                         placeholder='Enter user name'
+                        helperText={userError}
                         fullWidth
                         value={username}
                         autoComplete='off'
-                        onChange={(e) => setUsername(e.target.value )}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div className="pass">
@@ -85,10 +73,11 @@ function Login({authToken,setToken}) {
                         type="password"
                         className="password"
                         placeholder='Enter password'
+                        helperText={passError}
                         fullWidth
                         value={password}
                         autoComplete='off'
-                        onChange={(e) => setPassword(e.target.value )}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="button1">
