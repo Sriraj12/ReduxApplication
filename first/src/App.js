@@ -10,7 +10,6 @@ import { useMemo, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 
 
-
 function App(props) {
   const token = localStorage.getItem("token")
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
@@ -42,19 +41,19 @@ function App(props) {
                   role === 'Super Admin' || role === 'Admin' ?
                     <>
                       <Route exact path="/userdetails" element={
-                        <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                        <Userdetails setToken={setIsLoggedIn} />} />
                     </> :
                     <>
                       <Route path="/userdetails" element={<Navigate replace to="/" />} />
                     </>
                 }
-                <Route exact path="/" element={<Home authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                <Route exact path="/" element={<Home setToken={setIsLoggedIn} />} />
                 <Route exact path="/userdetails" element={
-                  <Userdetails authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                  <Userdetails setToken={setIsLoggedIn} />} />
                 <Route exact path="/information" element={
-                  <Information authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                  <Information setToken={setIsLoggedIn} />} />
                 <Route exact path="/status" element={
-                  <Status authToken={isLoggedIn} setToken={setIsLoggedIn} />} />
+                  <Status setToken={setIsLoggedIn} />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
               </>
             }

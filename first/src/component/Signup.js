@@ -6,37 +6,37 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useDispatch } from 'react-redux';
 import { getPass } from '../service/action';
 
-
 function Signup() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    // const data = useSelector((state) => state)
-    // console.log("stateDate",data);
-    const [uerror, setUerror] = useState();
-    const [perror, setPerror] = useState()
+
+    const [usererror, setUsererror] = useState();
+    const [pwderror, setPwderror] = useState();
     const [user, setUser] = useState({
         username: "",
         password: "",
     });
+
     const handleSubmitClick = () => {
-        if (user.username === "") {
-            setUerror('Required Field')
-        }else
-        if (user.username.length < 6) {
-            setUerror('Minimum 6 characters')
-        }
-        else
-        if (user.password === "") {
-            setPerror('Required Field')
+
+        if(user.username === "") {
+            setUsererror('Required Field')
         } else
-        if (user.password.length < 6) {
-            setPerror('Minimum 6 characters');
-        }
-        else {
-            setUser(user)
-            navigate("/login")
-            dispatch(getPass(user))
-        }
+            if (user.username.length < 6 ) {
+                setUsererror('Minimum 6 characters')
+            }
+            else
+                if (user.password === "") {
+                    setPwderror('Required Field')
+                } else
+                    if (user.password.length < 6) {
+                        setPwderror('Minimum 6 characters');
+                    }
+                    else {
+                        setUser(user)
+                        navigate("/login")
+                        dispatch(getPass(user))
+                    }
     };
     return (
         <Grid>
@@ -57,8 +57,7 @@ function Signup() {
                         value={user.username}
                         autoComplete='off'
                         onChange={(e) => setUser(prev => ({ ...prev, username: e.target.value }))}
-                        helperText={uerror}
-                        error={uerror}
+                        helperText={usererror}
                     />
                 </div>
                 <div className="pass">
@@ -74,8 +73,7 @@ function Signup() {
                         value={user.password}
                         autoComplete='off'
                         onChange={(e) => setUser(prev => ({ ...prev, password: e.target.value }))}
-                        helperText={perror}
-                        error={perror}
+                        helperText={pwderror}
                     />
                 </div>
                 <div className="button1">

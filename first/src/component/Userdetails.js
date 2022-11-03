@@ -4,15 +4,31 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/system';
 import { useState } from 'react';
+import axios from 'axios';
 
-function Userdetails({setToken}) {
-    const [data, setData] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:8000/store")
-            .then((data) => data.json())
-            .then(data => setData(data))
-    }, [])
+function Userdetails({ setToken }) {
     const navigate = useNavigate();
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = async () => {
+        try {
+            const response = await axios("http://localhost:8000/store", {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                }
+            })
+            setData(response.data)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <Grid>
@@ -64,7 +80,7 @@ function Userdetails({setToken}) {
 }
 export default Userdetails;
 
-function Information({setToken}) {
+function Information({ setToken }) {
     const navigate = useNavigate();
     return (
         <>
@@ -90,7 +106,7 @@ function Information({setToken}) {
         </>
     )
 }
-function Status({setToken}) {
+function Status({ setToken }) {
     const navigate = useNavigate();
     return (
         <>

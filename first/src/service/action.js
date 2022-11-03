@@ -12,21 +12,4 @@ export const getPass = (user) =>(dispatch,getData)=>{
     },5000)
 }
 
-// export const getUpdate = (user) =>({
-//         type:VALUE,
-//         payload:user
-// })
-
-
-// export const pass = (user) =>{
-//     return{
-//             type:VALUE, 
-//             payload:user
-//           }
-// }
-// export const passValue = ({username,password})=>{
-
-// }
-
-
  

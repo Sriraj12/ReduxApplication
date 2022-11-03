@@ -2,41 +2,28 @@ import React from 'react';
 import { Grid, Button, AppBar, Toolbar, IconButton, Typography, TextField } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useNavigate } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 import { Stack } from '@mui/system';
 import { useState } from 'react';
-// import jwt_decode from 'jwt-decode';
 
+function Home({ setToken }) {
 
-function Home({setToken}) {
-
-  // const decode = localStorage.getItem("token");
-  // const decoded = jwt_decode(decode);
-  // console.log("decode",decoded); 
-  // const role = decoded.role;
-  // console.log("role",role);
- 
-  // const details = useSelector((state) => state)
-  // const handleSubmitClick = () => {
-  //   return
-  // }
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
   const [place, setPlace] = useState("")
   const navigate = useNavigate();
 
-const AddUser = async() =>{
-  console.log("name",name);
-  await fetch("http://localhost:8000/store",{
-    method:'POST',
-    body: JSON.stringify({name: name,age:age,place:place})
-  })
-  .then((res)=>{
-    console.log("success",res);
-  }).catch((err)=>{
-    console.log("failed",err);
-  })
-}
+  const AddUser = async () => {
+    console.log("name", name);
+    await fetch("http://localhost:8000/store", {
+      method: 'POST',
+      body: JSON.stringify({ name: name, age: age, place: place })
+    })
+      .then((res) => {
+        console.log("success", res);
+      }).catch((err) => {
+        console.log("failed", err);
+      })
+  }
 
   return (
     <>
@@ -50,11 +37,7 @@ const AddUser = async() =>{
               LOGIN APP
             </Typography>
             <Stack direction="row" spacing={2}>
-              <Button color="inherit" onClick={()=>{ navigate("/userdetails")}
-                // () => {
-                // (role === 'Super Admin' || role === 'Admin' || role === 'CEO')
-                // ? navigate("/userdetails"): navigate("/")(alert("Cannot Access that Page"))} 
-              }
+              <Button color="inherit" onClick={() => { navigate("/userdetails"); }}
               >User Details</Button>
               <Button color="inherit" onClick={() => { navigate("/information"); }}
               >Information</Button>
@@ -67,33 +50,33 @@ const AddUser = async() =>{
             </Stack>
           </Toolbar>
         </AppBar>
-          <h2>Welcome to Home Page</h2>
-          <Stack spacing={2} sx={{paddingLeft:"1%"}}>
+        <h2>Welcome to Home Page</h2>
+        <Stack spacing={2} sx={{ paddingLeft: "1%" }}>
           <h3>Add User</h3>
           <TextField
-            sx = {{width:"15%"}} 
+            sx={{ width: "15%" }}
             variant="filled"
             label="Name"
-            onChange = {(e)=> setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
-           sx = {{width:"15%"}} 
-           variant='filled'
-           label="Age" 
-           onChange ={(e)=> setAge(e.target.value)}
+            sx={{ width: "15%" }}
+            variant='filled'
+            label="Age"
+            onChange={(e) => setAge(e.target.value)}
           />
           <TextField
-           sx = {{width:"15%"}} 
-           variant='filled'
-           label='Place'
-           onChange ={(e)=> setPlace(e.target.value)} 
+            sx={{ width: "15%" }}
+            variant='filled'
+            label='Place'
+            onChange={(e) => setPlace(e.target.value)}
           />
-          <Button 
-           sx = {{width:"15%"}} 
-           variant='contained'
-           color="primary" 
-           onClick={AddUser} >Add</Button>
-          </Stack>
+          <Button
+            sx={{ width: "15%" }}
+            variant='contained'
+            color="primary"
+            onClick={AddUser} >Add</Button>
+        </Stack>
       </Grid>
     </>
   )

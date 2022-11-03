@@ -4,34 +4,27 @@ import { useNavigate } from 'react-router-dom'
 import { Avatar, Grid, Button, TextField, Paper } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
+const maxLength = 1;
 
 function Login({ setToken }) {
     const navigate = useNavigate();
-    const Max_length = 1;
     const [userError, setUserError] = useState();
     const [passError, setPassError] = useState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    console.log("errorState", userError);
-
     const [data, setData] = useState()
-
-    // const array1 = data.filter((value)=>
-    //     (value.username === username && value.password === password)
-    // );
 
     const handleSubmit = async () => {
 
-        if (username < Max_length) {
+        if (username < maxLength) {
             setUserError('Please enter username')
-        } else if (password < Max_length) {
+        } else if (password < maxLength) {
             setPassError('Please enter the password')
         } else {
             console.log("bb2");
             try {
                 const response = await axios.post('http://localhost:8000/login', { username, password })
-                const loggedInUser = response.data.loggedInUser;
-                const token = response.data.token;
+                const { loggedInUser, token } = response.data;
                 setData(loggedInUser);
                 localStorage.setItem("token", token)
                 setToken(true);
@@ -41,7 +34,6 @@ function Login({ setToken }) {
             }
             console.log("data", data);
         }
-
     }
 
     return (
