@@ -48,12 +48,12 @@ function App(props) {
                     </>
                 }
                 <Route exact path="/" element={<Home setToken={setIsLoggedIn} />} />
-                <Route exact path="/userdetails" element={
-                  <Userdetails setToken={setIsLoggedIn} />} />
-                <Route exact path="/information" element={
-                  <Information setToken={setIsLoggedIn} />} />
-                <Route exact path="/status" element={
-                  <Status setToken={setIsLoggedIn} />} />
+                <Route exact path="/userdetails" 
+                element={<Userdetails setToken={setIsLoggedIn} />} />
+                <Route exact path="/information" 
+                element={<Information setToken={setIsLoggedIn} />} />
+                <Route exact path="/status" 
+                element={<Status setToken={setIsLoggedIn} />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
               </>
             }
