@@ -1,0 +1,48 @@
+.user{
+ padding: 20px; 
+ height:70vh;
+ width:280px;
+ margin:20px auto ;
+}
+.name{
+  margin-bottom: 10%;
+}
+.pass{
+  margin-bottom: 10%;
+}
+.logo{
+  background-color: blue;
+}
+.button1{
+  margin-bottom: 5%;
+}
+.bmb{
+  margin-bottom: 2%;
+}
+.bml{
+  margin-left: 3%;
+}
+.bmr{
+  margin-right: 3%;
+}
+table,th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td,th{
+  padding:auto;
+}
+table{
+  width:20%;
+  height: 10%;
+}
+
+
+
+/* <Route exact path="/home" element={() =>{
+  var a = localStorage.getItem('token')
+  return(
+    (a === 'user' ? <Home /> :  <Navigate replace to={"/"} />)
+  )
+}
+} /> */
